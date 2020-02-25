@@ -1,8 +1,10 @@
 /* This file is part of gal software */
 
-#include <omp.h>
 #include "ga.h"
+#include <stdlib.h>
+#include <stdio.h>
 #include <float.h>
+#include <time.h>
 #ifdef __unix__
     #include <sys/time.h>
 #endif
@@ -35,9 +37,6 @@ float my_fitness(TYPE * c)
 
 int main(int argc, char ** argv)
 {
-	/*OpenMP*/
-	int thread_count = strtol(argv[1],NULL,10);
-
 	struct timeval t_begin,t_end;
 	int i;
 	int j;
@@ -64,10 +63,10 @@ int main(int argc, char ** argv)
 		while(generations < STOP_GENERATIONS)
 		{
 			/* Fitness */
-			fitness(my_fitness,&popul,thread_count);
+			fitness(my_fitness,&popul);
         
 			/* Crossover  */
-			crossover(&popul,thread_count);
+			crossover(&popul);
  
 			generations++;
 		}
@@ -83,7 +82,7 @@ int main(int argc, char ** argv)
 #endif   
 
 		/* Apply fitness to sort */
-		fitness(my_fitness,&popul,thread_count);
+		fitness(my_fitness,&popul);
 
 		solution = my_fitness(popul.chromosomes[popul.size-1]);
 		if(solution < best)

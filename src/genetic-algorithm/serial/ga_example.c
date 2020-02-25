@@ -1,6 +1,5 @@
 /* This file is part of gal software */
 
-#include <omp.h>
 #include "ga.h"
 #include <float.h>
 #ifdef __unix__
@@ -32,9 +31,6 @@ float my_fitness(TYPE * c)
 
 int main(int argc, char ** argv)
 {
-	/*OpenMP*/
-	int thread_count = strtol(argv[1],NULL,10);
-
 #ifdef TYPE_ERR
 #ifdef DEBUG_MODE
     printf("WARNING. UINT_SZ INCORRECT, 32 ENABLED BY DEFAULT\n");
@@ -70,7 +66,7 @@ int main(int argc, char ** argv)
     while(generations < STOP_GENERATIONS)
     {
         /* Fitness */
-        fitness(my_fitness,&popul,thread_count);
+        fitness(my_fitness,&popul);
         
         /* Crossover  */
         crossover(&popul);
@@ -90,7 +86,7 @@ int main(int argc, char ** argv)
 #endif   
 
     /* Apply fitness to sort, and print last population */
-    fitness(my_fitness,&popul,thread_count);
+    fitness(my_fitness,&popul);
     ///printPopulation(my_fitness,&popul);
 
     /* Print best solution */
