@@ -13,4 +13,7 @@ Well documented implementations and case studies of artificial intelligence algo
 * Case 2: Example from Simon Haykin, Neural Networks and Learning Machines, 3ed, pg.448.
 * Case 3: XOR
 * Case 4: XOR and AND
-* Case 5: Schaffer F6 function Optimization
+* Case 5: Schaffer F6 function Optimization  
+
+## References  
+* https://deeplearning.mit.edu/  
